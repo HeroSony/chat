@@ -1,0 +1,29 @@
+version: "3"
+
+services:
+
+  # db:
+  #   image: mysql:5.7
+  #   # container_name: mysql
+  #   restart: always
+  #   volumes:
+  #     - database_mysql:/var/lib/mysql
+  #   environment:
+  #     - MYSQL_ALLOW_EMPTY_PASSWORD=yes
+  #   healthcheck:
+  #     test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
+  #     timeout: 5s
+  #     retries: 10
+      
+  server:
+    build: .
+    volumes: 
+      - "./:/go/src/github.com/herosony/chat"
+      - "./example-react-js:/web/example-react-js"
+    # depends_on: 
+    #   - db
+    ports:
+      - "6060:6060"
+
+volumes:
+  database_mysql:
