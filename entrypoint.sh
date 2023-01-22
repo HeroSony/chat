@@ -5,10 +5,10 @@ echo "\nWaiting for building and setting up the Tinode server...\nIt may take a 
 # ls /go/src/github.com/herosony/chat/tinode-db
 
 # Install tinode server from mounted directory
-go install -tags mysql github.com/herosony/chat/server@latest
+go install -tags mysql github.com/herosony/chat/server@develop
 
 # # Install tinode-db from mounted direcrory
-go install -tags mysql github.com/herosony/chat/tinode-db@latest
+go install -tags mysql github.com/herosony/chat/tinode-db@develop
 
 ls $GOPATH/bin
 
