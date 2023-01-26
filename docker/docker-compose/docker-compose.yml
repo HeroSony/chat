@@ -58,23 +58,6 @@ x-exporter-env-vars: &exporter-env-vars
   # "PROM_METRICS_PATH": "/metrics"
 
 services:
-  web-server:
-    image: nginx:latest
-    ports:
-      - 80:80
-      - 443:443
-    restart: always
-    volumes:
-      - ./nginx/conf/:/etc/nginx/conf.d/:ro
-      - ./certbot/www:/var/www/certbot/:ro
-    environment:
-      - ENV=${ENV}
-  
-  cert-bot:
-    image: certbot/certbot:latest
-    volumes:
-      - ./certbot/www/:/var/www/certbot/:rw
-
   db:
     image: mysql:5.7
     container_name: mysql
@@ -123,6 +106,23 @@ services:
     environment:
       << : *exporter-env-vars
       "WAIT_FOR": "tinode-0:6060"
+
+  nginx:
+    image: nginx:latest
+    ports:
+      - 80:80
+      - 443:443
+    restart: always
+    volumes:
+      - ./nginx/conf/:/etc/nginx/conf.d/:ro
+      - ./certbot/www:/var/www/certbot/:ro
+    environment:
+      - ENV=${ENV}
+  
+  # cert-bot:
+  #   image: certbot/certbot:latest
+  #   volumes:
+  #     - ./certbot/www/:/var/www/certbot/:rw
 
   admin:
     image: adminer

@@ -1,4 +1,4 @@
-FROM golang
+FROM golang:1.16
 WORKDIR /go/src
 
 # RUN go get gopkg.in/gorethink/gorethink.v4 && go install gopkg.in/gorethink/gorethink.v4

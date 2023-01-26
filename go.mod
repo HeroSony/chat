@@ -1,4 +1,4 @@
-module github.com/herosony/chat
+module github.com/tinode/chat
 
 go 1.16
 

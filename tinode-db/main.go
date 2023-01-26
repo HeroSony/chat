@@ -230,6 +230,8 @@ func main() {
 		}
 	}
 
+	log.Printf("config.StoreConfig: '%s'", config.StoreConfig)
+
 	err := store.Store.Open(1, config.StoreConfig)
 	defer store.Store.Close()
 

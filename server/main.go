@@ -24,38 +24,38 @@ import (
 	gh "github.com/gorilla/handlers"
 
 	// For stripping comments from JSON config
-	jcr "github.com/herosony/jsonco"
+	jcr "github.com/tinode/jsonco"
 
 	// Authenticators
-	"github.com/herosony/chat/server/auth"
-	_ "github.com/herosony/chat/server/auth/anon"
-	_ "github.com/herosony/chat/server/auth/basic"
-	_ "github.com/herosony/chat/server/auth/rest"
-	_ "github.com/herosony/chat/server/auth/token"
+	"github.com/tinode/chat/server/auth"
+	_ "github.com/tinode/chat/server/auth/anon"
+	_ "github.com/tinode/chat/server/auth/basic"
+	_ "github.com/tinode/chat/server/auth/rest"
+	_ "github.com/tinode/chat/server/auth/token"
 
 	// Database backends
-	_ "github.com/herosony/chat/server/db/mongodb"
-	_ "github.com/herosony/chat/server/db/mysql"
-	_ "github.com/herosony/chat/server/db/rethinkdb"
+	_ "github.com/tinode/chat/server/db/mongodb"
+	_ "github.com/tinode/chat/server/db/mysql"
+	_ "github.com/tinode/chat/server/db/rethinkdb"
 
-	"github.com/herosony/chat/server/logs"
+	"github.com/tinode/chat/server/logs"
 
 	// Push notifications
-	"github.com/herosony/chat/server/push"
-	_ "github.com/herosony/chat/server/push/fcm"
-	_ "github.com/herosony/chat/server/push/stdout"
-	_ "github.com/herosony/chat/server/push/tnpg"
+	"github.com/tinode/chat/server/push"
+	_ "github.com/tinode/chat/server/push/fcm"
+	_ "github.com/tinode/chat/server/push/stdout"
+	_ "github.com/tinode/chat/server/push/tnpg"
 
-	"github.com/herosony/chat/server/store"
+	"github.com/tinode/chat/server/store"
 
 	// Credential validators
-	_ "github.com/herosony/chat/server/validate/email"
-	_ "github.com/herosony/chat/server/validate/tel"
+	_ "github.com/tinode/chat/server/validate/email"
+	_ "github.com/tinode/chat/server/validate/tel"
 	"google.golang.org/grpc"
 
 	// File upload handlers
-	_ "github.com/herosony/chat/server/media/fs"
-	_ "github.com/herosony/chat/server/media/s3"
+	_ "github.com/tinode/chat/server/media/fs"
+	_ "github.com/tinode/chat/server/media/s3"
 )
 
 const (
@@ -376,6 +376,10 @@ func main() {
 
 		logs.Info.Printf("Profiling info saved to '%s.(cpu|mem)'", *pprofFile)
 	}
+
+	logs.Info.Printf("DB CONFIG '%s'", config.Store)
+
+	logs.Info.Printf("workerId '%d'", workerId)
 
 	err = store.Store.Open(workerId, config.Store)
 	if err != nil {
